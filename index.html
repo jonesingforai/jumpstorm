@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JumpStorm Inflatables | Electrifying Every Party</title>
+  <meta name="description" content="JumpStorm Inflatables — inflatable rentals in Texas. Electrifying Every Party." />
+  <link rel="icon" href="assets/logo-icon.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar__inner">
+    <a class="brand" href="./">
+      <img src="assets/logo-primary.png" alt="JumpStorm Inflatables" class="brand__logo" />
+    </a>
+    <nav class="nav">
+      <a href="#products" data-i18n="nav_products">Products</a>
+      <a href="#availability" data-i18n="nav_availability">Availability</a>
+      <a href="#book" class="btn btn--small" data-i18n="nav_book">Book</a>
+      <a href="#safety" data-i18n="nav_safety">Safety</a>
+      <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+      <a href="#reviews" data-i18n="nav_reviews">Reviews</a>
+      <a href="#service-area" data-i18n="nav_service">Service Area</a>
+      <a href="#policies" data-i18n="nav_policies">Policies</a>
+    </nav>
+    <div class="langwrap"><button class="lang" id="langToggle" aria-label="Switch language">EN / ES</button><button class="lang lang--sub" id="spanishFirstToggle" aria-label="Spanish-first toggle">ES-first</button></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <p class="kicker" data-i18n="hero_kicker">🌩 Bring the Thunder. Bring the Fun.</p>
+        <h1 data-i18n="hero_title">Inflatable Rentals in Texas</h1>
+        <p class="tagline">⚡ <span data-i18n="hero_tagline">Electrifying Every Party</span></p>
+        <p class="sub" data-i18n="hero_sub">Clean, safe bounce houses, slides, and combos — delivered, set up, and picked up.</p>
+
+        <div class="cta">
+          <!-- Replace with your real phone/email -->
+          <a class="btn" href="tel:+1-XXX-XXX-XXXX" data-i18n="cta_call">Call</a>
+          <a class="btn btn--ghost" href="sms:+1-XXX-XXX-XXXX" data-i18n="cta_text">Text</a>
+          <a class="btn btn--alt" href="#book" data-i18n="cta_quote">Get a Quote</a>
+        </div>
+
+        <div class="badges">
+          <span class="badge" data-i18n="badge_clean">✅ Sanitized & inspected</span>
+          <span class="badge" data-i18n="badge_ontime">✅ On-time delivery</span>
+          <span class="badge" data-i18n="badge_safe">✅ Safety-first rules</span>
+        </div>
+      </div>
+
+      <aside class="hero__aside">
+        <img src="assets/logo-secondary.png" alt="JumpStorm secondary logo" class="secondaryLogo" />
+        <div class="note">
+          <strong data-i18n="aside_fast">Fast booking:</strong>
+          <ol>
+            <li data-i18n="aside_step1">Pick a product</li>
+            <li data-i18n="aside_step2">Check availability</li>
+            <li data-i18n="aside_step3">Request booking</li>
+          </ol>
+          <p class="small" data-i18n="aside_tip">Tip: Add your real inventory and pricing below.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="products_title">Products & Pricing</h2>
+        <p class="muted" data-i18n="products_sub">Add / edit products in <code>products.json</code>. The booking form pulls from this list.</p>
+      </div>
+      <div id="productGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="availability">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="avail_title">Live Availability</h2>
+        <p class="muted" data-i18n="avail_sub">
+          This page is wired for a free Google Sheets + Apps Script backend. Until you connect it, it shows demo availability.
+        </p>
+      </div>
+
+      <div class="availability">
+        
+<div class="availability__controls">
+  <label>
+    <span data-i18n="avail_select">Select product</span>
+    <select id="availProduct"></select>
+  </label>
+  <label>
+    <span data-i18n="avail_date">Date</span>
+    <input id="availDate" type="date" />
+  </label>
+  <label>
+    <span data-i18n="avail_duration">Hours</span>
+    <select id="availDuration">
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4" selected>4</option>
+      <option value="6">6</option>
+      <option value="8">8</option>
+    </select>
+  </label>
+  <button class="btn btn--alt" id="checkBtn" data-i18n="avail_check">Check</button>
+</div>
+<div id="availResult" class="result"></div>
+<div id="slotGrid" class="slotGrid" aria-label="Available time slots"></div>
+
+
+        <details class="small muted">
+          <summary data-i18n="avail_setup_title">How to turn on real-time availability (free)</summary>
+          <div class="setup">
+            <p data-i18n="avail_setup_p1">
+              1) Create a Google Sheet called <b>JumpStorm Bookings</b> with tabs: <b>Products</b>, <b>Bookings</b>.
+              2) Paste the Apps Script from <code>apps-script/Code.gs</code> and deploy as a Web App.
+              3) Set <code>API_BASE</code> in <code>script.js</code>.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="book">
+    <div class="container split">
+      <div>
+        <h2 data-i18n="book_title">Request a Booking</h2>
+        <p class="tagline">⚡ <span data-i18n="hero_tagline">Electrifying Every Party</span></p>
+        <p data-i18n="book_sub">We confirm by text/email ASAP. Your request is not final until confirmed.</p>
+
+        <div class="doclinks">
+          <a class="doc" href="docs/JumpStorm_Rental_Contract_TX_FILLABLE.pdf" target="_blank" rel="noopener">
+            <img src="assets/logo-secondary.png" alt="" />
+            <div>
+              <strong data-i18n="doc_contract">Rental Contract (Fillable)</strong>
+              <div class="muted small" data-i18n="doc_contract_sub">Texas</div>
+            </div>
+          </a>
+          <a class="doc" href="docs/JumpStorm_Liability_Waiver_Branded.pdf" target="_blank" rel="noopener">
+            <img src="assets/logo-secondary.png" alt="" />
+            <div>
+              <strong data-i18n="doc_waiver">Liability Waiver (Branded)</strong>
+              <div class="muted small" data-i18n="doc_waiver_sub">English</div>
+            </div>
+          </a>
+    
+          <a class="doc" href="docs/JumpStorm_Rental_Contract_and_Waiver_TX_FILLABLE_EN.pdf" target="_blank" rel="noopener">
+            <img src="assets/logo-secondary.png" alt="" />
+            <div>
+              <strong data-i18n="doc_en">Contract + Waiver (English)</strong>
+              <div class="muted small" data-i18n="doc_en_sub">Fillable PDF</div>
+            </div>
+          </a>
+          <a class="doc" href="docs/JumpStorm_Rental_Contract_and_Waiver_TX_FILLABLE_ES.pdf" target="_blank" rel="noopener">
+            <img src="assets/logo-secondary.png" alt="" />
+            <div>
+              <strong data-i18n="doc_es">Contrato + Exención (Español)</strong>
+              <div class="muted small" data-i18n="doc_es_sub">PDF rellenable</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <form class="form" id="bookingForm">
+        <h3 data-i18n="form_title">Booking details</h3>
+        <label><span data-i18n="f_name">Name</span><input name="name" required></label>
+        <label><span data-i18n="f_phone">Phone</span><input name="phone" required></label>
+        <label><span data-i18n="f_email">Email</span><input name="email" type="email"></label>
+        <label><span data-i18n="f_date">Event date</span><input name="date" type="date" required></label>
+        <label><span data-i18n="f_start">Start time</span><select name="start_time" id="startTime"></select></label>
+        <label><span data-i18n="f_hours">Hours</span><select name="hours" id="hours">
+          <option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="6">6</option><option value="8">8</option>
+        </select></label>
+        <label><span data-i18n="f_address">Address / City</span><input name="address" required></label>
+        <label><span data-i18n="f_product">Product</span><select name="product" id="bookProduct"></select></label>
+        <label><span data-i18n="f_notes">Notes</span><textarea name="notes" rows="3" placeholder=""></textarea></label>
+
+        
+        <label class="agree">
+          <input type="checkbox" name="agree" required />
+          <span data-i18n="agree_text">I have read and agree to the Contract + Waiver.</span>
+          <a class="agree__link" href="docs/JumpStorm_Rental_Contract_and_Waiver_TX_FILLABLE_EN.pdf" target="_blank" rel="noopener" data-i18n="agree_link">(open)</a>
+        </label>
+    <button class="btn btn--alt" type="submit" data-i18n="f_submit">Send request</button>
+        <p class="small muted" data-i18n="f_note">
+          Free mode: opens your email app. Pro mode: connect Apps Script to store bookings + block dates.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="safety">
+    <div class="container split">
+      <div>
+        <h2 data-i18n="safety_title">Professional, safe, trustworthy</h2>
+        <ul class="checks">
+          <li data-i18n="s1">Equipment sanitized & inspected every rental</li>
+          <li data-i18n="s2">Clear rules: no flips, no overcrowding, age grouping</li>
+          <li data-i18n="s3">Proper anchoring / staking</li>
+          <li data-i18n="s4">Weather-aware setup & shutdown</li>
+        </ul>
+      </div>
+      <div class="trustbox">
+        <img src="assets/logo-icon.png" alt="JumpStorm icon" class="iconMark" />
+        <p class="muted" data-i18n="trust_tip">
+          Recommended next: add a photo gallery, real reviews, and a Google Business Profile link for instant credibility.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="gallery">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="gallery_title">Photo & Video Gallery</h2>
+        <p class="muted" data-i18n="gallery_sub">Upload your best photos and short videos here. This section is designed so you only replace the placeholder files.</p>
+      </div>
+
+      <div class="galleryGrid">
+        <!-- Replace these placeholders with your own images in /assets/gallery/ -->
+        <figure class="mediaCard">
+          <img src="assets/placeholders/photo-1.jpg" alt="Bounce house rental photo 1" />
+          <figcaption class="muted small" data-i18n="gallery_cap1">Add a photo of your most popular unit.</figcaption>
+        </figure>
+        <figure class="mediaCard">
+          <img src="assets/placeholders/photo-2.jpg" alt="Bounce house rental photo 2" />
+          <figcaption class="muted small" data-i18n="gallery_cap2">Add a clean setup shot (stakes visible if possible).</figcaption>
+        </figure>
+        <figure class="mediaCard">
+          <img src="assets/placeholders/photo-3.jpg" alt="Bounce house rental photo 3" />
+          <figcaption class="muted small" data-i18n="gallery_cap3">Add a party-wide shot (parents love this).</figcaption>
+        </figure>
+        <figure class="mediaCard">
+          <!-- Video placeholder: replace src with your own MP4 in /assets/gallery/ -->
+          <video controls poster="assets/placeholders/video-poster.jpg">
+            <source src="assets/placeholders/demo-video.mp4" type="video/mp4" />
+          </video>
+          <figcaption class="muted small" data-i18n="gallery_cap4">Add a 10–20 second walkthrough video.</figcaption>
+        </figure>
+      </div>
+
+      <p class="small muted" data-i18n="gallery_tip">
+        Pro tip: Use bright daylight photos + one close-up showing cleanliness. Add a short clip of setup for trust.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="included">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="included_title">What’s Included</h2>
+        <p class="muted" data-i18n="included_sub">Clear expectations reduce issues and increase bookings.</p>
+      </div>
+
+      <div class="grid grid--two">
+        <div class="card">
+          <h3 data-i18n="inc1_title">Delivery + Setup</h3>
+          <p class="muted" data-i18n="inc1">We deliver, set up on level ground, and secure the inflatable properly.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="inc2_title">Sanitized Equipment</h3>
+          <p class="muted" data-i18n="inc2">Every unit is cleaned, sanitized, and inspected before each rental.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="inc3_title">Pickup Included</h3>
+          <p class="muted" data-i18n="inc3">We return at the agreed time to break down and pick up.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="inc4_title">Safety Rules</h3>
+          <p class="muted" data-i18n="inc4">We provide simple rules to keep everyone safe (no flips, no overcrowding).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="reviews">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="reviews_title">Customer Reviews</h2>
+        <p class="muted" data-i18n="reviews_sub">Replace the placeholders with your real reviews (Google is best).</p>
+      </div>
+
+      <div class="grid">
+        <figure class="review">
+          <blockquote data-i18n="rev1">“Super clean, on time, and the kids had the BEST day.”</blockquote>
+          <figcaption class="muted" data-i18n="rev1_by">— Customer Name, City</figcaption>
+        </figure>
+        <figure class="review">
+          <blockquote data-i18n="rev2">“Professional setup and clear safety rules. Highly recommend.”</blockquote>
+          <figcaption class="muted" data-i18n="rev2_by">— Customer Name, City</figcaption>
+        </figure>
+        <figure class="review">
+          <blockquote data-i18n="rev3">“Fast communication and everything looked brand new.”</blockquote>
+          <figcaption class="muted" data-i18n="rev3_by">— Customer Name, City</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="service-area">
+    <div class="container split">
+      <div>
+        <h2 data-i18n="service_title">Service Area</h2>
+        <p class="muted" data-i18n="service_sub">List the cities you serve (this helps SEO and customer trust).</p>
+        <ul class="checks">
+          <li data-i18n="svc1">City 1</li>
+          <li data-i18n="svc2">City 2</li>
+          <li data-i18n="svc3">City 3</li>
+          <li data-i18n="svc4">Surrounding areas</li>
+        </ul>
+        <p class="small muted" data-i18n="service_tip">Tip: Add your “delivery fee” rules here if you use them.</p>
+      </div>
+
+      <div class="trustbox">
+        <h3 data-i18n="gb_title">Google Business Profile</h3>
+        <p class="muted" data-i18n="gb_sub">Add your Google Business Profile link and (optional) embed map.</p>
+
+        <div class="card">
+          <p class="small muted" data-i18n="gb_linktip">Replace the link below with your Google Business Profile URL:</p>
+          <a class="btn btn--alt" href="https://www.google.com/search?q=JumpStorm+Inflatables+reviews" id="gbLink" data-i18n="gb_btn">Open Google Reviews</a>
+          <p class="small muted" data-i18n="gb_maptip">Optional: paste your Google Maps embed iframe code into <code>index.html</code> here:</p>
+          <div class="mapPlaceholder" aria-label="Map placeholder">
+            <span class="muted small" data-i18n="gb_mapph">Map embed goes here</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="policies">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="policies_title">Power, Space & Weather Policies</h2>
+        <p class="muted" data-i18n="policies_sub">Clear policies prevent cancellations and protect your business.</p>
+      </div>
+
+      <div class="grid grid--two">
+        <div class="card card--dark">
+          <h3 data-i18n="pwr_title">Electricity Required</h3>
+          <p data-i18n="pwr_text">A dedicated 110–120V outlet is required within 50–75 feet for each inflatable blower. Please keep the outlet free of other appliances.</p>
+        </div>
+        <div class="card card--dark">
+          <h3 data-i18n="spc_title">Level Ground + Space</h3>
+          <p data-i18n="spc_text">We need enough clear space on level ground. No slopes or unsafe terrain. We will not set up if conditions are unsafe.</p>
+        </div>
+        <div class="card card--dark">
+          <h3 data-i18n="wthr_title">Weather Safety</h3>
+          <p data-i18n="wthr_text">Inflatables cannot be used in rain, lightning, or high winds. We will reschedule or cancel for safety.</p>
+        </div>
+        <div class="card card--dark">
+          <h3 data-i18n="cap_title">Capacity Rules</h3>
+          <p data-i18n="cap_text">No overcrowding. Group kids by size/age. No flips or rough play. Adult supervision is required at all times.</p>
+        </div>
+      </div>
+
+      <p class="small" style="color:rgba(255,255,255,.85)" data-i18n="policies_note">
+        One unit per product: each inflatable blocks its own date when booked.
+      </p>
+    </div>
+  </section>
+
+
+  <section class="section section--soft" id="faq">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="faq_title">FAQ</h2>
+        <p class="muted" data-i18n="faq_sub">Replace answers to match your exact policies. This section reduces time-wasting messages.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary data-i18n="faq_q1">How much space do I need?</summary>
+          <p data-i18n="faq_a1">We’ll confirm the exact dimensions, but most inflatables need level ground plus clearance on all sides.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_q2">Do you provide a generator?</summary>
+          <p data-i18n="faq_a2">If a dedicated outlet isn’t available, we can provide a generator as an add-on (request in advance).</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_q3">What if the weather is bad?</summary>
+          <p data-i18n="faq_a3">Safety comes first. We will reschedule or cancel based on rain, lightning, and wind conditions.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_q4">Do I need to supervise?</summary>
+          <p data-i18n="faq_a4">Yes. Adult supervision is required at all times while the inflatable is in use.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="compliance">
+    <div class="container split">
+      <div>
+        <h2 data-i18n="comp_title">Safety & Compliance</h2>
+        <p class="muted" data-i18n="comp_sub">Add details that build trust (without overwhelming customers).</p>
+        <ul class="checks">
+          <li data-i18n="comp1">Cleaning and inspection checklist for every rental</li>
+          <li data-i18n="comp2">Proper anchoring / staking and safe blower placement</li>
+          <li data-i18n="comp3">Clear capacity and age-grouping rules</li>
+          <li data-i18n="comp4">Weather monitoring and shutdown procedures</li>
+        </ul>
+        <p class="small muted" data-i18n="comp_tip">Optional: Add your insurance statement here if you carry coverage.</p>
+      </div>
+      <div class="trustbox">
+        <h3 data-i18n="ins_title">Insurance / Licenses</h3>
+        <div class="card">
+          <p class="muted small" data-i18n="ins_sub">
+            If you have insurance, add a short line like: “We are insured for inflatable rentals.” Avoid posting policy numbers publicly.
+          </p>
+          <p class="muted small" data-i18n="ins_sub2">
+            If your city requires permits, mention “Compliant with local requirements” after you confirm details.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="cancellation">
+    <div class="container">
+      <div class="head">
+        <h2 data-i18n="can_title">Deposits & Cancellation Policy</h2>
+        <p class="muted" data-i18n="can_sub">Set clear rules to protect your schedule. Replace placeholders to match your business.</p>
+      </div>
+      <div class="grid grid--two">
+        <div class="card card--dark">
+          <h3 data-i18n="can1_title">Deposit</h3>
+          <p data-i18n="can1">Example: A $___ deposit is required to hold the date/time. Deposit applies to the rental total.</p>
+        </div>
+        <div class="card card--dark">
+          <h3 data-i18n="can2_title">Rescheduling</h3>
+          <p data-i18n="can2">Example: Reschedule once at no cost with 48 hours notice (weather exceptions may apply).</p>
+        </div>
+        <div class="card card--dark">
+          <h3 data-i18n="can3_title">Cancellation</h3>
+          <p data-i18n="can3">Example: Cancellations within 24 hours may forfeit the deposit.</p>
+        </div>
+        <div class="card card--dark">
+          <h3 data-i18n="can4_title">Weather</h3>
+          <p data-i18n="can4">Example: If conditions are unsafe, we’ll reschedule or refund per your weather policy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <img src="assets/logo-icon.png" alt="JumpStorm Inflatables" class="footer__icon" />
+    <div>
+      <strong>JumpStorm Inflatables</strong><br/>
+      <span class="muted" data-i18n="footer_line">Bring the Thunder. Bring the Fun.</span>
+    </div>
+    <div class="muted small">© <span id="year"></span> JumpStorm Inflatables</div>
+  </div>
+</footer>
+
+<script src="products.json" type="application/json" id="productsData"></script>
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
